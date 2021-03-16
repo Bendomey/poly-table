@@ -12,7 +12,7 @@ npm install --save poly-table
 
 ## Usage
 
-- Using with the useTable hook.
+- Using the useTable hook.
 
 ```tsx
 import * as React from 'react'
