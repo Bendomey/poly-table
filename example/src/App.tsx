@@ -1,10 +1,11 @@
 import React from 'react'
 
-import { ExampleComponent } from 'poly-table'
+import useTable from 'poly-table'
 import 'poly-table/dist/index.css'
 
 const App = () => {
-  return <ExampleComponent text="Create React Library Example 😄" />
+  const response = useTable()
+  return <div>{response}</div>
 }
 
 export default App
