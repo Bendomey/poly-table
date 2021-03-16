@@ -12,17 +12,64 @@ npm install --save poly-table
 
 ## Usage
 
+- Using with the useTable hook.
+
 ```tsx
-import React, { Component } from 'react'
-
+import * as React from 'react'
+import Header from './components/header'
+import Footer from './components/footer'
 import MyComponent from 'poly-table'
-import 'poly-table/dist/index.css'
 
-class Example extends Component {
-  render() {
-    return <MyComponent />
-  }
+const data = {
+  entityData: [
+    {
+      id: 1,
+      name: 'Entity 1'
+    }
+  ],
+  total: 2
 }
+
+const Example = () => {
+  const cols: ColumnProps[] = [
+    {
+      name: 'Entity Name',
+      rows: [],
+      type: 'only-text',
+      accessor: 'name'
+    },
+    {
+      name: 'Created At',
+      rows: [],
+      type: 'only-text',
+      accessor: 'name'
+    }
+  ]
+}
+
+const { end, limit, setEnd, setSkip, skip } = usePagination({
+  getLimit: 1
+})
+const { paginationData } = useTable({
+  cols: cols,
+  end,
+  limit,
+  setEnd,
+  setSkip,
+  skip,
+  total: data?.total
+})
+
+return (
+  <React.Fragment>
+    <div className={'container'}>
+      <table>
+        <TableHead cols={cols} />
+      </table>
+      <Footer total={data?.total} paginationData={paginationData} />
+    </div>
+  </React.Fragment>
+)
 ```
 
 ## Features
