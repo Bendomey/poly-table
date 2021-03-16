@@ -28,7 +28,7 @@ class Example extends Component {
 ## Features
 
 - [x] Typescript Support
-- [x] Headless implementation (Ui Components can be Fully Customizable)
+- [x] Headless implementation (UI Components can be fully customized)
 - [x] Pagination Support
 - [x] Example built with tailwind ui
 
