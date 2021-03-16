@@ -1,35 +1,33 @@
 import * as React from 'react'
 
-interface Props {
-  skip: number
-  setSkip: React.Dispatch<React.SetStateAction<number>>
-  setEnd: React.Dispatch<React.SetStateAction<number>>
-  currentPage: number
-  end: number
-  limit: number
+interface FooterProps {
   pages: number[]
-  total: number
+  currentPage: number
+  goToPage: (index: number) => void
+  goNext: VoidFunction
+  goPrev: VoidFunction
+  disablePrevButton: boolean
+  disableNextButton: boolean
+  firstDataIndexInPage: number
+  lastDataIndexInPage: number
 }
-const Footer: React.FC<Props> = ({
-  skip,
-  setSkip,
-  end,
-  total,
-  limit,
-  setEnd,
-  currentPage,
-  pages
-}) => {
+interface Props {
+  total: number
+  paginationData: FooterProps
+}
+const Footer: React.FC<Props> = ({ total, paginationData }) => {
   return (
     <React.Fragment>
       <nav className='mt-2 px-4 py-3 flex items-center justify-between sm:px-6'>
         <div className='hidden sm:block'>
           <p className='text-sm font-light leading-5 text-gray-700'>
             Showing
-            <span className='font-medium mx-3'>{skip + 1}</span>
+            <span className='font-medium mx-3'>
+              {paginationData.firstDataIndexInPage}
+            </span>
             to
             <span className='font-medium mx-3'>
-              {end > total ? total : end}
+              {paginationData.lastDataIndexInPage}
             </span>
             of
             <span className=' font-medium mx-3'>{total}</span>
@@ -39,15 +37,15 @@ const Footer: React.FC<Props> = ({
         <div className='flex-1 flex justify-between sm:justify-end items-center'>
           <nav className='relative z-0 inline-flex shadow-sm'>
             <button
-              disabled={skip === 0}
+              disabled={paginationData.disablePrevButton}
               onClick={(e) => {
                 e.preventDefault()
-                setSkip(skip - limit)
-                setEnd(skip - limit)
+                paginationData.goPrev()
               }}
               type='button'
               className={`relative inline-flex ${
-                skip === 0 && 'cursor-not-allowed opacity-50'
+                paginationData.disablePrevButton &&
+                'cursor-not-allowed opacity-50'
               } items-center px-2 py-2 border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-500 hover:text-gray-400 focus:z-10 focus:outline-none focus:border-purple-300 focus:shadow-outline-purple active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150`}
               aria-label='Previous'
             >
@@ -67,16 +65,17 @@ const Footer: React.FC<Props> = ({
               </svg>
             </button>
 
-            {pages.map((p: number, i: number) => (
+            {paginationData.pages.map((p: number, i: number) => (
               <React.Fragment key={i}>
                 <button
                   onClick={(e) => {
                     e.preventDefault()
-                    setSkip(i * limit)
+                    paginationData.goToPage(i)
                   }}
                   type='button'
                   className={`-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium focus:z-10 focus:outline-none ${
-                    currentPage === i && 'bg-purple-400 text-white'
+                    paginationData.currentPage === i &&
+                    'bg-purple-400 text-white'
                   } transition ease-in-out duration-150`}
                 >
                   {p}
@@ -88,12 +87,12 @@ const Footer: React.FC<Props> = ({
               type='button'
               onClick={(e) => {
                 e.preventDefault()
-                setSkip(skip + limit)
-                setEnd(skip + limit)
+                paginationData.goNext()
               }}
-              disabled={skip + limit >= total}
+              disabled={paginationData.disableNextButton}
               className={`-ml-px relative inline-flex ${
-                end >= total && 'cursor-not-allowed opacity-50'
+                paginationData.disablePrevButton &&
+                'cursor-not-allowed opacity-50'
               } items-center px-2 py-2 border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-500 hover:text-gray-400 focus:z-10 focus:outline-none focus:border-purple-300 focus:shadow-outline-purple active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150`}
               aria-label='Next'
             >

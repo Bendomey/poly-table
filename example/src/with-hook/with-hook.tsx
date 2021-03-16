@@ -49,16 +49,7 @@ const WithHookImplmentation = () => {
         <table>
           <TableHead cols={cols} />
         </table>
-        <Footer
-          skip={skip}
-          setSkip={setSkip}
-          end={end}
-          total={data?.total}
-          limit={limit}
-          setEnd={setEnd}
-          currentPage={paginationData.currentPage}
-          pages={paginationData.pages}
-        />
+        <Footer total={data?.total} paginationData={paginationData} />
       </div>
 
       <style>
