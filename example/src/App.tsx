@@ -1,11 +1,15 @@
 import React from 'react'
 
-import useTable from 'poly-table'
 import 'poly-table/dist/index.css'
+import WithHookImplmentation from './with-hook'
 
 const App = () => {
-  const response = useTable()
-  return <div>{response}</div>
+  return (
+    <div>
+      <span>Implementation with hook</span>
+      <WithHookImplmentation />
+    </div>
+  )
 }
 
 export default App
