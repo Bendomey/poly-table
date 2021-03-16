@@ -18,7 +18,8 @@ npm install --save poly-table
 import * as React from 'react'
 import Header from './components/header'
 import Footer from './components/footer'
-import MyComponent from 'poly-table'
+import useTable, { usePagination } from 'poly-table'
+import type { ColumnProps } from 'poly-table/dist/v1/types'
 
 const data = {
   entityData: [
