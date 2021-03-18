@@ -9,6 +9,14 @@ export interface ColumnProps {
   headerStyle?: HeaderStyleProps
 }
 
+export interface HeaderDetailsProps {
+  name: string
+  headerStyle?: HeaderStyleProps
+}
+
+export interface HeaderProps {
+  col: HeaderDetailsProps[]
+}
 export interface RowsProps {
   type: 'text' | 'banner' | 'date' | 'number' | 'button'
   bold?: boolean

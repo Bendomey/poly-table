@@ -22,11 +22,17 @@ const WithHookImplmentation = () => {
       name: 'Entity Name',
       rows: [],
       type: 'only-text',
+      headerStyle: {
+        align: 'center'
+      },
       accessor: 'name'
     },
     {
       name: 'Created At',
       rows: [],
+      headerStyle: {
+        align: 'center'
+      },
       type: 'only-text',
       accessor: 'name'
     }
@@ -34,7 +40,7 @@ const WithHookImplmentation = () => {
   const { end, limit, setEnd, setSkip, skip } = usePagination({
     getLimit: 1
   })
-  const { paginationData } = useTable({
+  const { paginationData, headerData } = useTable({
     cols: cols,
     end,
     limit,
@@ -47,7 +53,7 @@ const WithHookImplmentation = () => {
     <React.Fragment>
       <div className={'container'}>
         <table>
-          <TableHead cols={cols} />
+          <TableHead cols={headerData} />
         </table>
         <Footer total={data?.total} paginationData={paginationData} />
       </div>

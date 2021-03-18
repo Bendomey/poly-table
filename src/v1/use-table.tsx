@@ -1,11 +1,6 @@
 import { getHeaderDetails } from './broker/broker'
-import type { HeaderDetailsProps } from './broker/types'
-import type { ColumnProps } from './types'
+import type { ColumnProps, HeaderProps } from './types'
 import usePage from './use-page'
-
-interface HeaderProps {
-  col: HeaderDetailsProps[]
-}
 
 interface FooterProps {
   pages: number[]

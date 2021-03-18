@@ -1,5 +1,4 @@
-import type { ColumnProps } from '../types'
-import type { HeaderDetailsProps } from './types'
+import type { ColumnProps, HeaderDetailsProps } from '../types'
 
 export const getHeaderDetails = (cols: ColumnProps[]): HeaderDetailsProps[] =>
   cols?.map((col: ColumnProps) => {

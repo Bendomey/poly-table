@@ -46,7 +46,7 @@ const Footer: React.FC<Props> = ({ total, paginationData }) => {
               className={`relative inline-flex ${
                 paginationData.disablePrevButton &&
                 'cursor-not-allowed opacity-50'
-              } items-center px-2 py-2 border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-500 hover:text-gray-400 focus:z-10 focus:outline-none focus:border-purple-300 focus:shadow-outline-purple active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150`}
+              } items-center px-2 py-2 border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-500 hover:text-gray-400 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150`}
               aria-label='Previous'
             >
               <svg
@@ -74,8 +74,7 @@ const Footer: React.FC<Props> = ({ total, paginationData }) => {
                   }}
                   type='button'
                   className={`-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium focus:z-10 focus:outline-none ${
-                    paginationData.currentPage === i &&
-                    'bg-purple-400 text-white'
+                    paginationData.currentPage === i && 'bg-blue-400 text-white'
                   } transition ease-in-out duration-150`}
                 >
                   {p}
@@ -91,9 +90,9 @@ const Footer: React.FC<Props> = ({ total, paginationData }) => {
               }}
               disabled={paginationData.disableNextButton}
               className={`-ml-px relative inline-flex ${
-                paginationData.disablePrevButton &&
+                !paginationData.disablePrevButton &&
                 'cursor-not-allowed opacity-50'
-              } items-center px-2 py-2 border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-500 hover:text-gray-400 focus:z-10 focus:outline-none focus:border-purple-300 focus:shadow-outline-purple active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150`}
+              } items-center px-2 py-2 border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-500 hover:text-gray-400 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150`}
               aria-label='Next'
             >
               <svg
