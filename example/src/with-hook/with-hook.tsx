@@ -1,6 +1,6 @@
 import React from 'react'
 
-import useTable, { usePagination } from 'poly-table'
+import useTable from 'poly-table'
 import type { ColumnProps } from 'poly-table/dist/v1/types'
 import 'poly-table/dist/index.css'
 import TableHead from './header'
@@ -37,16 +37,11 @@ const WithHookImplmentation = () => {
       accessor: 'name'
     }
   ]
-  const { end, limit, setEnd, setSkip, skip } = usePagination({
-    getLimit: 1
-  })
+
   const { paginationData, headerData } = useTable({
     cols: cols,
-    end,
-    limit,
-    setEnd,
-    setSkip,
-    skip,
+    limit: 1,
+    // skip, // you can add skip here
     total: data?.total
   })
   return (

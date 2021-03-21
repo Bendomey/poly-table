@@ -1,6 +1,7 @@
 import { getHeaderDetails } from './broker/broker'
 import type { ColumnProps, HeaderProps } from './types'
 import usePage from './use-page'
+import usePagination from './use-pagination'
 
 interface FooterProps {
   pages: number[]
@@ -20,24 +21,22 @@ interface OutputProps {
 }
 
 interface Props {
-  end: number
-  setEnd: React.Dispatch<React.SetStateAction<number>>
-  skip: number
-  setSkip: React.Dispatch<React.SetStateAction<number>>
   limit: number
+  skip?: number
   cols: ColumnProps[]
   total: number | null
 }
 
 const useTable = ({
-  skip,
-  setSkip,
-  limit,
-  end,
-  setEnd,
+  limit: getLimit,
+  skip: getSkip,
   cols,
   total
 }: Props): OutputProps => {
+  const { end, limit, setEnd, setSkip, skip } = usePagination({
+    getLimit,
+    getSkip
+  })
   const { page } = usePage({ total, limit })
   //header data to be used
   const headerData: HeaderProps = {
