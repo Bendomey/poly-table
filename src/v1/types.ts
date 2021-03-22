@@ -2,11 +2,18 @@
 
 export interface ColumnProps {
   name: string
-  type: 'only-text' | 'with-image' | 'actions' | 'date-time'
+  type:
+    | 'only-text'
+    | 'with-image'
+    | 'actions'
+    | 'date-time'
+    | 'number'
+    | 'html-element'
   image?: any | null
   accessor?: string | null
   rows: RowsProps[]
   headerStyle?: HeaderStyleProps
+  bodyAlign?: 'left' | 'right' | 'center'
 }
 
 export interface ThemeProps {
@@ -23,15 +30,27 @@ export interface HeaderProps {
   col: HeaderDetailsProps[]
 }
 export interface RowsProps {
-  type: 'text' | 'banner' | 'date' | 'number' | 'button'
+  type: 'text' | 'banner' | 'number' | 'button' | 'date'
   bold?: boolean
   format?: string
+  default?: string
   formatNumber?: (val: number) => string
   formatBanner?: (val: any) => BannerReturnProps
   accessor?: string[]
   truncate?: number
-  onPress?: (data: any) => void
-  svg?: 'view' | 'edit' | 'workflow' | 'generate' | 'delete'
+  link?: string
+  onClick?: (data: any) => void
+  text?: string
+  linkComponent?: any
+  showButton?: (data: any) => boolean
+  svg?:
+    | 'view'
+    | 'edit'
+    | 'workflow'
+    | 'generate'
+    | 'delete'
+    | 'archive'
+    | 'transfer'
 }
 
 export interface HeaderStyleProps {
