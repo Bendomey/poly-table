@@ -3,13 +3,14 @@ import type { ColumnProps, ThemeProps } from '../types'
 import useTable from '../use-table'
 import TableHead from './header'
 import TableFooter from './footer'
+import TableCell from './cell'
 
 interface Props {
   limit: number
   skip?: number
   cols: ColumnProps[]
   total: number
-  data: any
+  data: any[]
   type?: 'striped' | 'raw'
   theme?: ThemeProps
 }
@@ -19,7 +20,9 @@ const TableComponent: React.FC<Props> = ({
   skip,
   cols,
   total,
-  theme
+  theme,
+  data,
+  type
 }) => {
   const { headerData, paginationData } = useTable({
     cols: cols,
@@ -28,17 +31,39 @@ const TableComponent: React.FC<Props> = ({
     total: total
   })
 
+  // lets us know if its striped or raw
+  let getBackgroundColorFromType = (i: number) =>
+    type === 'raw' ? 'bg-white' : i % 2 === 0 ? 'bg-white' : 'bg-gray-50'
+
   return (
     <React.Fragment>
-      <div className={'flex flex-col'}>
+      <div className={'flex flex-col '}>
         <div className='-my-2 py-2  sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8'>
-          <table className='min-w-full border-none'>
-            <thead>
-              <TableHead col={headerData?.col} />
-            </thead>
-            <tbody className='bg-white'></tbody>
-          </table>
-          <div className='align-middle inline-block min-w-full shadow  sm:rounded-none'></div>
+          <div className='align-middle inline-block min-w-full shadow  sm:rounded-none'>
+            <table className='min-w-full border-none '>
+              <thead className={''}>
+                <TableHead col={headerData?.col} />
+              </thead>
+              <tbody className='bg-white'>
+                {data?.map((mem: any, i: number) => (
+                  <React.Fragment key={i}>
+                    <tr
+                      className={
+                        getBackgroundColorFromType(i) +
+                        ' flex flex-row border-b border-gray-200'
+                      }
+                    >
+                      {cols.map((col: ColumnProps, j: number) => (
+                        <React.Fragment key={j}>
+                          <TableCell col={col} data={mem} />
+                        </React.Fragment>
+                      ))}
+                    </tr>
+                  </React.Fragment>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
 
