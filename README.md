@@ -48,16 +48,10 @@ const Example = () => {
   ]
 }
 
-const { end, limit, setEnd, setSkip, skip } = usePagination({
-  getLimit: 1
-})
 const { paginationData } = useTable({
   cols: cols,
-  end,
-  limit,
-  setEnd,
-  setSkip,
-  skip,
+  limit: 1,
+  skip: 0, // this could be undefined ... It defauls to 0 anyways
   total: data?.total
 })
 
