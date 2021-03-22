@@ -18,7 +18,7 @@ npm install --save poly-table
 import * as React from 'react'
 import Header from './components/header'
 import Footer from './components/footer'
-import useTable, { usePagination } from 'poly-table'
+import useTable from 'poly-table'
 import type { ColumnProps } from 'poly-table/dist/v1/types'
 
 const data = {
@@ -48,16 +48,10 @@ const Example = () => {
   ]
 }
 
-const { end, limit, setEnd, setSkip, skip } = usePagination({
-  getLimit: 1
-})
 const { paginationData } = useTable({
   cols: cols,
-  end,
-  limit,
-  setEnd,
-  setSkip,
-  skip,
+  limit: 1,
+  skip: 0, // this could be undefined ... It defauls to 0 anyways
   total: data?.total
 })
 
@@ -71,6 +65,80 @@ return (
     </div>
   </React.Fragment>
 )
+```
+
+- Using the Already Designed Table Component.
+
+```tsx
+import * as React from 'react'
+import { Table } from 'poly-table'
+import type { ColumnProps } from 'poly-table/dist/v1/types'
+
+const data = {
+  entityData: [
+    {
+      id: 1,
+      name: 'Entity 1',
+      createdAt: new Date()
+    },
+    {
+      id: 2,
+      name: 'Entity 1',
+      createdAt: new Date()
+    }
+  ],
+  total: 2
+}
+
+const Example = () => {
+  const cols: ColumnProps[] = [
+    {
+      name: 'Entity Name',
+      rows: [
+        {
+          type: 'text',
+          accessor: ['name'],
+          bold: true
+        }
+      ],
+      type: 'only-text',
+      headerStyle: {
+        align: 'center',
+        flex: 2
+      },
+      accessor: 'name'
+    },
+    {
+      name: 'Created At',
+      rows: [
+        {
+          type: 'date',
+          accessor: ['createdAt'],
+          format: 'PPPpp'
+        }
+      ],
+      headerStyle: {
+        align: 'center'
+      },
+      type: 'date-time',
+      accessor: 'name'
+    }
+  ]
+
+  return (
+    <React.Fragment>
+      <React.Fragment>
+      <div className={'container'}>
+        <Table
+          limit={1}
+          cols={cols}
+          total={data?.total}
+          data={data?.entityData}
+        />
+      </div>
+    </React.Fragment>
+  )
+}
 ```
 
 ## Features
