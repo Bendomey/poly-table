@@ -6,11 +6,13 @@ const data = {
   entityData: [
     {
       id: 1,
-      name: 'Entity 1'
+      name: 'Entity 1',
+      createdAt: new Date()
     },
     {
       id: 2,
-      name: 'Entity 1'
+      name: 'Entity 1',
+      createdAt: new Date()
     }
   ],
   total: 2
@@ -20,7 +22,13 @@ const WithTableImplementation = () => {
   const cols: ColumnProps[] = [
     {
       name: 'Entity Name',
-      rows: [],
+      rows: [
+        {
+          type: 'text',
+          accessor: ['name'],
+          bold: true
+        }
+      ],
       type: 'only-text',
       headerStyle: {
         align: 'center',
@@ -30,11 +38,17 @@ const WithTableImplementation = () => {
     },
     {
       name: 'Created At',
-      rows: [],
+      rows: [
+        {
+          type: 'date',
+          accessor: ['createdAt'],
+          format: 'PPPpp'
+        }
+      ],
       headerStyle: {
         align: 'center'
       },
-      type: 'only-text',
+      type: 'date-time',
       accessor: 'name'
     }
   ]
