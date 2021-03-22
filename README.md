@@ -46,25 +46,25 @@ const Example = () => {
       accessor: 'name'
     }
   ]
+
+  const { paginationData } = useTable({
+    cols: cols,
+    limit: 1,
+    skip: 0, // this could be undefined ... It defauls to 0 anyways
+    total: data?.total
+  })
+
+  return (
+    <React.Fragment>
+      <div className={'container'}>
+        <table>
+          <TableHead cols={cols} />
+        </table>
+        <Footer total={data?.total} paginationData={paginationData} />
+      </div>
+    </React.Fragment>
+  )
 }
-
-const { paginationData } = useTable({
-  cols: cols,
-  limit: 1,
-  skip: 0, // this could be undefined ... It defauls to 0 anyways
-  total: data?.total
-})
-
-return (
-  <React.Fragment>
-    <div className={'container'}>
-      <table>
-        <TableHead cols={cols} />
-      </table>
-      <Footer total={data?.total} paginationData={paginationData} />
-    </div>
-  </React.Fragment>
-)
 ```
 
 - Using the Already Designed Table Component.
@@ -127,7 +127,6 @@ const Example = () => {
 
   return (
     <React.Fragment>
-      <React.Fragment>
       <div className={'container'}>
         <Table
           limit={1}
