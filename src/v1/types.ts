@@ -9,6 +9,11 @@ export interface ColumnProps {
   headerStyle?: HeaderStyleProps
 }
 
+export interface ThemeProps {
+  tailwind: boolean
+  color: string
+}
+
 export interface HeaderDetailsProps {
   name: string
   headerStyle?: HeaderStyleProps

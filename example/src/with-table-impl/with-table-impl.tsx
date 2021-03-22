@@ -7,6 +7,10 @@ const data = {
     {
       id: 1,
       name: 'Entity 1'
+    },
+    {
+      id: 2,
+      name: 'Entity 1'
     }
   ],
   total: 2
@@ -38,7 +42,7 @@ const WithTableImplementation = () => {
     <React.Fragment>
       <div className={'container'}>
         <Table
-          limit={10}
+          limit={1}
           cols={cols}
           total={data?.total}
           data={data?.entityData}
