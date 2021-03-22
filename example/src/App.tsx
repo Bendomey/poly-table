@@ -7,9 +7,13 @@ import WithTableImplmentation from './with-table-impl'
 const App = () => {
   return (
     <div>
-      <span>Implementation with hook</span>
+      <div className={'container'}>
+        <span>Implementation with hook</span>
+      </div>
       <WithHookImplmentation />
-      <span>Implementation with table component</span>
+      <div className={'container'}>
+        <span>Implementation with table component</span>
+      </div>
       <WithTableImplmentation />
     </div>
   )

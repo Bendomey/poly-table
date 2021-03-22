@@ -31,6 +31,7 @@ export interface RowsProps {
 
 export interface HeaderStyleProps {
   align?: 'left' | 'right' | 'center'
+  flex?: number
 }
 
 export interface BannerReturnProps {
