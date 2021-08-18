@@ -13,6 +13,7 @@ interface FooterProps {
   disableNextButton: boolean
   firstDataIndexInPage: number
   lastDataIndexInPage: number
+  paginationGroup?: number[];
 }
 
 interface OutputProps {
@@ -24,13 +25,15 @@ interface Props {
   limit: number
   skip?: number
   cols: ColumnProps[]
-  total: number | null
+  total: number | null,
+  pageLimit?: number
 }
 
 const useTable = ({
   limit: getLimit,
   skip: getSkip,
   cols,
+  pageLimit = 5,
   total
 }: Props): OutputProps => {
   const { end, limit, setEnd, setSkip, skip } = usePagination({
@@ -62,16 +65,22 @@ const useTable = ({
     setEnd(skip - limit)
   }
 
+  const getPaginationGroup = (): number[] => {
+    let start = Math.floor((getCurrentPage() - 1) / pageLimit) * pageLimit;
+    return new Array(page.length).fill(0).map((_, idx) => start + idx + 1);
+  }
+
   const paginationData: FooterProps = {
     currentPage: getCurrentPage(),
-    pages: page,
+    pages: getPaginationGroup(),
     goToPage,
     goNext,
     goPrev,
     disablePrevButton: skip === 0,
     disableNextButton: skip + limit >= (total || 0),
     firstDataIndexInPage: skip + 1,
-    lastDataIndexInPage: end > (total || 0) ? total || 0 : end
+    lastDataIndexInPage: end > (total || 0) ? total || 0 : end,
+    // paginationGroup: getPaginationGroup()
   }
 
   return {
