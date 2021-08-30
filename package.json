@@ -2,12 +2,13 @@
   "name": "poly-table",
   "version": "1.0.0",
   "description": "Opinionated, flexible reactjs table component",
-  "author": "Bendomey",
+  "author": "Benjamin Domey <domeybenjamin1@gmail.com>",
   "license": "MIT",
   "repository": "Bendomey/poly-table",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.tsx",
+  "homepage": "poly-table.github.io",
   "engines": {
     "node": ">=10"
   },
@@ -21,7 +22,7 @@
     "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
     "test:watch": "react-scripts test --env=jsdom",
     "predeploy": "cd example && yarn install && yarn run build",
-    "deploy": "gh-pages -d example/build"
+    "deploy:website": "yarn predeploy && gh-pages -d example/build"
   },
   "peerDependencies": {
     "react": "^16.0.0"
