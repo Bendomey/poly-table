@@ -1,6 +1,6 @@
 {
   "name": "poly-table",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Opinionated, flexible reactjs table component",
   "author": "Benjamin Domey <domeybenjamin1@gmail.com>",
   "license": "MIT",
@@ -12,6 +12,7 @@
   "engines": {
     "node": ">=10"
   },
+  "keywords": ["react", "components", "ui","typescript","table","opinionated","tailwind"],
   "scripts": {
     "build": "microbundle-crl --no-compress --format modern,cjs",
     "start": "microbundle-crl watch --no-compress --format modern,cjs",
@@ -50,7 +51,8 @@
     "typescript": "^3.7.5"
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md"
   ],
   "dependencies": {
     "date-fns": "^2.19.0"
