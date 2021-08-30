@@ -1,9 +1,9 @@
-export interface Props {
+export interface UsePageInputProps {
   total: number | null
   limit: number
 }
 
-export interface OutputProps {
+export interface UsePageOutputProps {
   page: number[]
   setPage: React.Dispatch<React.SetStateAction<number[]>>
 }

@@ -5,7 +5,7 @@ import TableHead from './header'
 import TableFooter from './footer'
 import TableCell from './cell'
 
-interface Props {
+export interface TableComponentInputProps {
   limit: number
   skip?: number
   cols: ColumnProps[]
@@ -15,7 +15,7 @@ interface Props {
   theme?: ThemeProps
 }
 
-const TableComponent: React.FC<Props> = ({
+const TableComponent: React.FC<TableComponentInputProps> = ({
   limit,
   skip,
   cols,

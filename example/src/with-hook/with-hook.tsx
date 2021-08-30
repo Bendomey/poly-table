@@ -1,6 +1,6 @@
 import React from 'react'
 
-import useTable from 'poly-table'
+import { useTable } from 'poly-table'
 import type { ColumnProps } from 'poly-table/dist/v1/types'
 import TableHead from './header'
 import Footer from './footer'

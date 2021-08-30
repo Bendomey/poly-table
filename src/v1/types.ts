@@ -1,5 +1,3 @@
-// import * as React from 'react'
-
 export interface ColumnProps {
   name: string
   type:
@@ -81,4 +79,29 @@ export interface FooterComponentProps {
 export interface TableCellProps {
   data: any
   col: ColumnProps
+}
+
+export interface UseTableFooterProps {
+  pages: number[]
+  currentPage: number
+  goToPage: (index: number) => void
+  goNext: (page: number) => void
+  goPrev: VoidFunction
+  disablePrevButton: boolean
+  disableNextButton: boolean
+  firstDataIndexInPage: number
+  lastDataIndexInPage: number
+  paginationGroup?: number[]
+}
+
+export interface UseTableOutputProps {
+  headerData: HeaderProps
+  paginationData: UseTableFooterProps
+}
+
+export interface UseTableInputProps {
+  limit: number
+  skip?: number
+  cols: ColumnProps[]
+  total: number
 }

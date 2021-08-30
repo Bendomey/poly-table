@@ -1,29 +1,35 @@
 import * as React from 'react'
 
-interface Props {
+export interface UsePaginationInputtputProps {
   getLimit: number
   getSkip?: number
 }
 
-interface Output {
-  end: number
-  setEnd: React.Dispatch<React.SetStateAction<number>>
+export interface UsePaginationOutputProps {
   skip: number
   setSkip: React.Dispatch<React.SetStateAction<number>>
   limit: number
+  currentPage: number
   setLimit: React.Dispatch<React.SetStateAction<number>>
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>
 }
 
-const usePagination = ({ getLimit, getSkip }: Props): Output => {
-  const [end, setEnd] = React.useState<number>(0)
+const usePagination = ({
+  getLimit,
+  getSkip
+}: UsePaginationInputtputProps): UsePaginationOutputProps => {
   const [skip, setSkip] = React.useState<number>(getSkip || 0)
   const [limit, setLimit] = React.useState<number>(getLimit || 10)
+  const [currentPage, setCurrentPage] = React.useState<number>(1)
 
-  React.useEffect(() => {
-    setEnd(skip + limit)
-  }, [limit, skip])
-
-  return { end, setEnd, skip, setSkip, limit, setLimit }
+  return {
+    skip,
+    setSkip,
+    limit,
+    setLimit,
+    setCurrentPage,
+    currentPage
+  }
 }
 
 export default usePagination

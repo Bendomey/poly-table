@@ -1,20 +1,9 @@
 import * as React from 'react'
-import type { ThemeProps } from '../types'
+import type { ThemeProps, UseTableFooterProps } from '../types'
 
-interface FooterProps {
-  pages: number[]
-  currentPage: number
-  goToPage: (index: number) => void
-  goNext: VoidFunction
-  goPrev: VoidFunction
-  disablePrevButton: boolean
-  disableNextButton: boolean
-  firstDataIndexInPage: number
-  lastDataIndexInPage: number
-}
 interface Props {
   total: number
-  paginationData: FooterProps
+  paginationData: UseTableFooterProps
   theme?: ThemeProps
 }
 const Footer: React.FC<Props> = ({ total, paginationData, theme }) => {
@@ -46,14 +35,14 @@ const Footer: React.FC<Props> = ({ total, paginationData, theme }) => {
           <nav className='relative z-0 inline-flex shadow-sm'>
             <button
               disabled={paginationData.disablePrevButton}
-              onClick={(e) => {
-                e.preventDefault()
+              onClick={() => {
                 paginationData.goPrev()
               }}
               type='button'
-              className={`relative inline-flex ${paginationData.disablePrevButton &&
+              className={`relative inline-flex ${
+                paginationData.disablePrevButton &&
                 'cursor-not-allowed opacity-50'
-                } items-center px-2 py-2 border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-500 hover:text-gray-400 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150`}
+              } items-center px-2 py-2 border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-500 hover:text-gray-400 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150`}
               aria-label='Previous'
             >
               <svg
@@ -77,13 +66,14 @@ const Footer: React.FC<Props> = ({ total, paginationData, theme }) => {
                 <button
                   onClick={(e) => {
                     e.preventDefault()
-                    paginationData.goToPage(i)
+                    paginationData.goToPage(p)
                   }}
                   style={{ color: !theme?.tailwind ? theme?.color : undefined }}
                   type='button'
-                  className={`-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium focus:z-10 focus:outline-none ${paginationData.currentPage === i &&
+                  className={`-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium focus:z-10 focus:outline-none ${
+                    paginationData.currentPage === p &&
                     `${themeColor} text-white`
-                    } transition ease-in-out duration-150`}
+                  } transition ease-in-out duration-150`}
                 >
                   {p}
                 </button>
@@ -92,14 +82,14 @@ const Footer: React.FC<Props> = ({ total, paginationData, theme }) => {
 
             <button
               type='button'
-              onClick={(e) => {
-                e.preventDefault()
-                paginationData.goNext()
+              onClick={() => {
+                paginationData.goNext(paginationData.currentPage + 1)
               }}
               disabled={paginationData.disableNextButton}
-              className={`-ml-px relative inline-flex ${!paginationData.disablePrevButton &&
+              className={`-ml-px relative inline-flex ${
+                paginationData.disableNextButton &&
                 'cursor-not-allowed opacity-50'
-                } items-center px-2 py-2 border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-500 hover:text-gray-400 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150`}
+              } items-center px-2 py-2 border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-500 hover:text-gray-400 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150`}
               aria-label='Next'
             >
               <svg

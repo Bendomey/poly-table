@@ -4,7 +4,7 @@ interface FooterProps {
   pages: number[]
   currentPage: number
   goToPage: (index: number) => void
-  goNext: VoidFunction
+  goNext: (index: number) => void
   goPrev: VoidFunction
   disablePrevButton: boolean
   disableNextButton: boolean
@@ -86,7 +86,7 @@ const Footer: React.FC<Props> = ({ total, paginationData }) => {
               type='button'
               onClick={(e) => {
                 e.preventDefault()
-                paginationData.goNext()
+                paginationData.goNext(paginationData.currentPage + 1)
               }}
               disabled={paginationData.disableNextButton}
               className={`-ml-px relative inline-flex ${

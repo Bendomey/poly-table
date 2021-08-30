@@ -1,8 +1,8 @@
 import * as React from 'react'
 
-import { Props, OutputProps } from './types'
+import { UsePageInputProps, UsePageOutputProps } from './types'
 
-const usePage = ({ limit, total }: Props): OutputProps => {
+const usePage = ({ limit, total }: UsePageInputProps): UsePageOutputProps => {
   const [page, setPage] = React.useState<number[]>([1])
 
   React.useEffect(() => {

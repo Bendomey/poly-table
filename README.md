@@ -47,7 +47,7 @@ const Example = () => {
     }
   ]
 
-  const { paginationData } = useTable({
+  const { paginationData,headerData } = useTable({
     cols: cols,
     limit: 1,
     skip: 0, // this could be undefined ... It defauls to 0 anyways
@@ -58,7 +58,7 @@ const Example = () => {
     <React.Fragment>
       <div className={'container'}>
         <table>
-          <TableHead cols={cols} />
+          <TableHead cols={headerData} />
         </table>
         <Footer total={data?.total} paginationData={paginationData} />
       </div>

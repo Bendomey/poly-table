@@ -10,12 +10,52 @@ const data = {
       createdAt: new Date()
     },
     {
+      id: 1,
+      name: 'Entity 1',
+      createdAt: new Date()
+    },
+    {
+      id: 1,
+      name: 'Entity 1',
+      createdAt: new Date()
+    },
+    {
+      id: 1,
+      name: 'Entity 1',
+      createdAt: new Date()
+    },
+    {
+      id: 1,
+      name: 'Entity 1',
+      createdAt: new Date()
+    },
+    {
+      id: 1,
+      name: 'Entity 1',
+      createdAt: new Date()
+    },
+    {
+      id: 1,
+      name: 'Entity 1',
+      createdAt: new Date()
+    },
+    {
+      id: 1,
+      name: 'Entity 1',
+      createdAt: new Date()
+    },
+    {
+      id: 1,
+      name: 'Entity 1',
+      createdAt: new Date()
+    },
+    {
       id: 2,
       name: 'Entity 1',
       createdAt: new Date()
     }
   ],
-  total: 2
+  total: 200
 }
 
 const WithTableImplementation = () => {
@@ -56,7 +96,7 @@ const WithTableImplementation = () => {
     <React.Fragment>
       <div className={'container'}>
         <Table
-          limit={1}
+          limit={10}
           cols={cols}
           total={data?.total}
           data={data?.entityData}
